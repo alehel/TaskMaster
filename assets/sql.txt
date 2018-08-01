@@ -1,0 +1,60 @@
+-- ****************** SqlDBM: MySQL ******************;
+-- ***************************************************;
+
+DROP TABLE IF EXISTS `task`;
+
+
+DROP TABLE IF EXISTS `list`;
+
+
+DROP TABLE IF EXISTS `user`;
+
+
+
+-- ************************************** `user`
+
+CREATE TABLE `user`
+(
+ `email`    VARCHAR(100) NOT NULL ,
+ `password` VARCHAR(250) NOT NULL ,
+
+PRIMARY KEY (`email`)
+);
+
+
+
+
+
+-- ************************************** `list`
+
+CREATE TABLE `list`
+(
+ `listname` VARCHAR(100) NOT NULL ,
+ `email`    VARCHAR(100) NOT NULL ,
+
+PRIMARY KEY (`listname`, `email`),
+KEY `fkIdx_13` (`email`),
+CONSTRAINT `FK_13` FOREIGN KEY `fkIdx_13` (`email`) REFERENCES `user` (`email`)
+);
+
+
+
+
+
+-- ************************************** `task`
+
+CREATE TABLE `task`
+(
+ `taskid`   BIGINT NOT NULL AUTO_INCREMENT ,
+ `task`     VARCHAR(250) NOT NULL ,
+ `listname` VARCHAR(100) NOT NULL ,
+ `email`    VARCHAR(100) NOT NULL ,
+
+PRIMARY KEY (`taskid`),
+KEY `fkIdx_32` (`listname`, `email`),
+CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`listname`, `email`) REFERENCES `list` (`listname`, `email`)
+);
+
+
+
+
