@@ -1,3 +1,8 @@
+let btnLogin = document.getElementById('btnLogin');
+btnLogin.addEventListener('click', function() { 
+    document.getElementById('modal-login').style.display = "block";
+}, false);
+
 function showModal() {
     document.getElementById('modal-login').style.display = "block";
 }
