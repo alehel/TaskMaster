@@ -15,7 +15,7 @@
          <?php
             include 'includes/loginmodal.html';
             include 'includes/loginmodal.html';
-            include 'includes/sidenav.html';
+            include 'includes/sidenav.php';
         ?>
 
         <div id="main">
