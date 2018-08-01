@@ -13,9 +13,11 @@
 <div class="sidenav" id="sidenav">
     <a href="#" id="btnCloseSidenav">&times;</a>
     <span>Task Lists</span>
-    <?php
-    foreach($list_arr as $value) {
-        echo $value;
-    }
-    ?>
+    <div class="tasklist">
+        <?php
+        foreach($list_arr as $value) {
+            echo $value;
+        }
+        ?>
+    </div>
 </div>

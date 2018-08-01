@@ -15,6 +15,9 @@
          <?php
             include 'includes/loginmodal.html';
             include 'includes/loginmodal.html';
+        ?>
+
+        <?php
             include 'includes/sidenav.php';
         ?>
 
@@ -24,15 +27,15 @@
             ?>
 
 
-            <div class="tasklist">
                 <?php
                     if(isset($_GET["failed"])) {
                         include 'includes/loginfailed.html';
                     } else if(!$logged_in) {
-                        include 'includes/welcome.html';
+                        include 'includes/todolist-empty.html';
+                    } else {
+                        include 'includes/todolist.php';
                     }
                 ?>
-            </div>
         </div>
 
     </body>

@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+#main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
 h1, .error {
     text-align: center;
     padding: 20px;
@@ -20,16 +27,15 @@ h1, .error {
     text-decoration: none;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 /*
     NAVBAR
 */
 #logo {
     font-size: 2em;
+}
+
+#burger-hidden {
+    display: none;
 }
 
 #burger {
@@ -96,35 +102,37 @@ body {
     z-index: 5;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
     overflow-x: hidden;
-    padding-top: 60px;
     transition: 0.5s;
 }
 
 .sidenav a, .sidenav span, .sidenav-error {
-    padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     display: block;
-    transition: 0.3s;
+}
+
+.sidenav a, .sidenav-error {
+    padding: 8px 8px 8px 32px;
+}
+
+.sidenav span {
+    padding: 32px 0px 32px 32px;
 }
 
 .sidenav-error {
-    color:white;
     font-size: 1em;
+}
+
+.sidenav a:first-of-type {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .sidenav a {
     color: #818181;
-}
-
-.sidenav span {
-    color: white;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .sidenav #btnCloseSideNav {
@@ -133,6 +141,7 @@ body {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    border: none;
 }
 
 @media screen and (max-height: 450px) {
@@ -203,4 +212,63 @@ body {
 
 .modal-content #btnCloseLogin {
     background-color: rgb(248, 94, 94);
+}
+
+/*
+    TO-DO LIST
+*/
+#todolist-empty {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 40px 80px;
+    justify-content: center;
+}
+
+#todolist-empty {
+    background-image: url('assets/can_do_man.svg'), none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    background-origin: content-box;
+}
+
+#todolist-empty * {
+    opacity: 1.0;
+}
+
+/*
+    DESKTOP - BIG SCREEN
+*/
+@media only screen and (min-width: 768px) {
+    body {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .sidenav {
+        z-index: 0;
+        position: relative;
+        min-width: 250px;
+        max-width: 300px;
+        top: 0;
+        left: 0;
+        transition: 0s;
+    }
+
+    #burger-hidden {
+        display: block;
+    }
+
+    #burger {
+        display: none;
+    }
+
+    #btnCloseSideNav {
+        display: none;
+    }
+
+    .modal-content {
+        width: 500px;
+    }
 }
