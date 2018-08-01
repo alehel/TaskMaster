@@ -43,7 +43,7 @@ h1, .error {
     color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+.sidenav #btnCloseSideNav {
     position: absolute;
     top: 0;
     right: 25px;
@@ -152,7 +152,6 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 .modal-content {
     display: inherit;
     background-color: #fefefe;
@@ -176,17 +175,24 @@ body {
     text-align: right;
 }
 
-.modal-content .input-button {
+.modal-buttons input {
     border: none;
-    padding: 16px 32px;
-    background-color: #5995DA;
+    padding: 14px 28px;
     color:white;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 4px;
 }
 
-.modal-content .input-button:hover {
-    cursor:pointer;
+.modal-buttons input:hover {
+    cursor: pointer;
+
 }
 
-.modal-content .input-button-cancel {
+.modal-content #btnSubmitLogin {
+    background-color: rgb(89, 218, 89);
+}
+
+.modal-content #btnCloseLogin {
     background-color: rgb(248, 94, 94);
 }

@@ -3,9 +3,20 @@ btnLogin.addEventListener('click', function() {
     document.getElementById('modal-login').style.display = "block";
 }, false);
 
-function showModal() {
-    document.getElementById('modal-login').style.display = "block";
-}
+let btnBurger = document.getElementById('burger');
+btnBurger.addEventListener('click', function() { 
+    document.getElementById("sidenav").style.width = "250px";
+}, false);
+
+let btnCloseSidenav = document.getElementById('btnCloseSidenav');
+btnCloseSidenav.addEventListener('click', function() { 
+    document.getElementById("sidenav").style.width = "0";
+}, false);
+
+let btnCloseLogin = document.getElementById('btnCloseLogin');
+btnCloseLogin.addEventListener('click', function() { 
+    closeModal();
+}, false);
 
 function closeModal() {
     let modal = document.getElementById('modal-login');    
@@ -17,14 +28,4 @@ window.onclick = function (event) {
     if (event.target === modal) {
         closeModal();
     }
-}
-
-/* Set the width of the side navigation to 250px */
-function showSidenav() {
-    document.getElementById("sidenav").style.width = "250px";
-}
-
-/* Set the width of the side navigation to 0 */
-function closeSidenav() {
-    document.getElementById("sidenav").style.width = "0";
 }
