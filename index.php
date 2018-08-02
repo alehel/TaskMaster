@@ -14,7 +14,6 @@
     <body>
          <?php
             include 'includes/loginmodal.html';
-            include 'includes/loginmodal.html';
         ?>
 
         <?php
@@ -30,14 +29,12 @@
                 <?php
                     if(isset($_GET["failed"])) {
                         include 'includes/loginfailed.html';
-                    } else if(!$logged_in) {
-                        include 'includes/todolist-empty.html';
                     } else {
-                        include 'includes/todolist.php';
+                        include 'includes/todolist-empty.php';
                     }
                 ?>
         </div>
 
     </body>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
     </html>

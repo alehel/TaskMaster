@@ -1,5 +1,5 @@
 <?php
-// error_reportin(0);
+//error_reporting(0);
 
 class Database {
     private $host = 'localhost';
