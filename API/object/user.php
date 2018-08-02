@@ -1,26 +1,6 @@
 <?php
-include_once '../config/database.php';
-
 class User {
     private $table = 'user';
-    
-    function read($email) {
-        $conn = (new Database())->get_connection();
-        $email = $conn->real_escape_string($email);
-        
-        $sql = "SELECT * FROM $this->table WHERE email='$email';";
-        $result = $conn->query($sql);
-        
-        if($result->num_rows === 1) {
-            $row = $result->fetch_assoc();
-            $row = array("email" => $row["email"]);
-            return json_encode($row, JSON_UNESCAPED_UNICODE);
-        } else {
-            return json_encode(array("error" => "No user with specified email."));
-        }
-        
-        $conn->close();
-    }
     
     function verify($email, $password) {
         // establish db connection

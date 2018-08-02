@@ -1,7 +1,24 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
+include_once '../config/database.php';
+session_start();
 
-include_once '../object/tasklist.php';
+if(isset($_SESSION["user"])) {
+    $email = $_SESSION["user"];
+    $conn = (new Database())->get_connection();
+    $email = $conn->real_escape_string($email);
 
-$tasklist = new Tasklist();
-echo $tasklist->get_all();
+    $sql = "SELECT * FROM list WHERE email='$email';";
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0) {
+        echo json_encode($result->fetch_all(MYSQLI_ASSOC), JSON_UNESCAPED_UNICODE);
+    } else {
+        // no lists - create base list.
+        echo json_encode(array("error"=>"No task lists found for user $email."));
+    }
+
+    $conn->close();
+} else {
+    echo json_encode(array("error"=>"Not logged inn"));
+}

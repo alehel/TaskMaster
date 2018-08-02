@@ -14,11 +14,16 @@
     <body>
          <?php
             include 'includes/loginmodal.html';
-        ?>
+            include 'includes/newlistmodal.html';
+            ?>
 
-        <?php
-            include 'includes/sidenav.php';
-        ?>
+        <div class="sidenav" id="sidenav">
+            <a href="#" id="btnCloseSidenav">&times;</a>
+            <span>Task Lists</span>
+            <div id="tasklist" class="tasklist">
+                <!-- Populated by AJAX call in scripts/sidenav.js -->
+            </div>
+        </div>
 
         <div id="main">
             <?php
@@ -27,14 +32,19 @@
 
 
                 <?php
-                    if(isset($_GET["failed"])) {
-                        include 'includes/loginfailed.html';
+                    if(isset($_GET["error"])) {
+                        if($_GET["error"] === "login") {
+                            echo '<div id="todolist-empty"><div class="error"><h1>Oops!...</h1>Login failed: Wrong username and/or password!</div></div>';
+                        } else if ($_GET["error"] === "newlist") {
+                            echo '<div id="todolist-empty"><div class="error"><h1>Oops!...</h1>Failed to create new task list! Please try again.</div></div>';
+                        }
                     } else {
                         include 'includes/todolist-empty.php';
                     }
                 ?>
         </div>
+        <script src="scripts/script.js"></script>
 
     </body>
-    <script src="scripts/script.js"></script>
+    
     </html>
