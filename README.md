@@ -1,2 +1,2 @@
 # TaskMaster
-A simple to-do application built using PHP/MySQL/HTML/CSS/JavaScript
+A simple to-do web application built using PHP/MySQL/HTML/CSS/JavaScript.
