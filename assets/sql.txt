@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS `list`;
 DROP TABLE IF EXISTS `user`;
 
 
-
 -- ************************************** `user`
 
 CREATE TABLE `user`
@@ -49,10 +48,11 @@ CREATE TABLE `task`
  `task`     VARCHAR(250) NOT NULL ,
  `listname` VARCHAR(100) NOT NULL ,
  `email`    VARCHAR(100) NOT NULL ,
+ `complete` BIT NOT NULL ,
 
 PRIMARY KEY (`taskid`),
 KEY `fkIdx_32` (`listname`, `email`),
-CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`listname`, `email`) REFERENCES `list` (`listname`, `email`)
+CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`listname`, `email`) REFERENCES `list` (`listname`, `email`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
