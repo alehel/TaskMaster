@@ -1,46 +1,59 @@
 <?php
     session_start();
-    $logged_in = isset($_SESSION["user"]);
+    if(!isset($_SESSION["user"])) {
+        echo "
+        <script type=\"text/javascript\">
+            window.location.href = './login.php';
+        </script>
+    ";
+    }
 ?>
+<!DOCTYPE html>
+<html>
 
-    <html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task Master</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Task Master</title>
-        <link rel="stylesheet" href="stylesheet.css">
-    </head>
+<body>
+    <?php
+    include 'includes/newlistmodal.html';
+    ?>
 
-    <body>
-         <?php
-            include 'includes/loginmodal.html';
-            include 'includes/newlistmodal.html';
-            ?>
+    <div class="sidenav" id="sidenav">
+        <a href="#" id="btnCloseSidenav">&times;</a>
+        <span>Task Lists</span>
+        <div id="tasklist" class="tasklist">
+            <!-- Populated by AJAX call in scripts/sidenav.js -->
+        </div>
+    </div>
 
-        <div class="sidenav" id="sidenav">
-            <a href="#" id="btnCloseSidenav">&times;</a>
-            <span>Task Lists</span>
-            <div id="tasklist" class="tasklist">
-                <!-- Populated by AJAX call in scripts/sidenav.js -->
+    <div id="main">
+        <nav class="menu-container">
+            <div class="menu">
+                <div id="burger-hidden"></div>
+                <div id="burger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="logo">Task Master</div>
+                <div id="links">
+                    <a id="btnLogout" href="logout.php">Logout</a>
+                </div>
+            </div>
+        </nav>
+        <div id="todolist">
+            <div id="welcome-message">
+                <h1>Welcome to Task Master</h1>
+                <p>Please select one of your task lists from the left pane.</p>
             </div>
         </div>
+    </div>
+    <script src="scripts/script.js"></script>
 
-        <div id="main">
-            <?php
-                include 'includes/topnav.html';
-            ?>
-                <?php
-                    if(isset($_GET["error"])) {
-                        if($_GET["error"] === "login") {
-                            echo '<div id="todolist"><div class="error"><h1>Oops!...</h1>Login failed: Wrong username and/or password!</div></div>';
-                        }
-                    } else {
-                        include 'includes/todolist.php';
-                    }
-                ?>
-        </div>
-        <script src="scripts/script.js"></script>
+</body>
 
-    </body>
-    
-    </html>
+</html>
