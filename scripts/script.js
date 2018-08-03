@@ -72,6 +72,7 @@ function addEventHandlersToLists() {
         items[i].addEventListener('click', function() {
             selectedList = this.id;
             loadTasks(this.id);
+            document.getElementById("sidenav").style.width = "0";
         }, false);
     }
 }

@@ -15,7 +15,7 @@ if(isset($_SESSION["user"])) {
         echo json_encode($result->fetch_all(MYSQLI_ASSOC), JSON_UNESCAPED_UNICODE);
     } else {
         // no lists - create base list.
-        echo json_encode(array("error"=>"No task lists found for user $email."));
+        echo json_encode(array());
     }
 
     $conn->close();
