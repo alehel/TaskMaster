@@ -29,17 +29,13 @@
             <?php
                 include 'includes/topnav.html';
             ?>
-
-
                 <?php
                     if(isset($_GET["error"])) {
                         if($_GET["error"] === "login") {
-                            echo '<div id="todolist-empty"><div class="error"><h1>Oops!...</h1>Login failed: Wrong username and/or password!</div></div>';
-                        } else if ($_GET["error"] === "newlist") {
-                            echo '<div id="todolist-empty"><div class="error"><h1>Oops!...</h1>Failed to create new task list! Please try again.</div></div>';
+                            echo '<div id="todolist"><div class="error"><h1>Oops!...</h1>Login failed: Wrong username and/or password!</div></div>';
                         }
                     } else {
-                        include 'includes/todolist-empty.php';
+                        include 'includes/todolist.php';
                     }
                 ?>
         </div>

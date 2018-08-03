@@ -1,3 +1,7 @@
+// GLOBALS
+let selectedList = "";
+
+
 let btnLogin = document.getElementById('btnLogin');
 if(btnLogin !== null) {
     btnLogin.addEventListener('click', function() { 
@@ -49,14 +53,49 @@ function loadList() {
         } else {
             htmlList += '<a href="#" id="createTaskList" onclick="showNewListModal();">+ Create task list</a>';
             for(list in obj) {
-                htmlList += '<a href="#">' + obj[list]["listname"] + '</a>';
+                htmlList += '<a href="#" id="list-'+obj[list]["listname"]+'" class="list">' + obj[list]["listname"] + '</a>';
             }
         }
 
         document.getElementById("tasklist").innerHTML = htmlList;
+        addEventHandlersToLists();
       }
     };
     xhttp.open("GET", "API/endpoint/getCollection.php", true);
+    xhttp.send();
+}
+
+function addEventHandlersToLists() {
+    let items = document.getElementsByClassName('list');
+
+    for(let i = 0; i < items.length; i++) {
+        items[i].addEventListener('click', function() {
+            selectedList = this.id;
+            loadTasks(this.id);
+        }, false);
+    }
+}
+
+function loadTasks(listID) {
+    let listname = listID.substring(5);
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        let obj = JSON.parse(this.responseText);
+        let html = '<div id="tasks">';
+        let i = 0;
+        for(task in obj) {
+            html += '<div class="task" id="task-'+i+'">'+obj[task]["task"]+'</div>';
+            i++;
+        }
+        html += '</div>';
+        let todolistDOM = document.getElementById('todolist');
+        todolistDOM.innerHTML = html;
+        todolistDOM.style.background = 'none';
+        todolistDOM.style.justifyContent = 'flex-start';
+      }
+    };
+    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+listname, true);
     xhttp.send();
 }
 

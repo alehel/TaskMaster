@@ -14,7 +14,6 @@ if(isset($_SESSION["user"])) {
     if($conn->affected_rows === 1) {
         echo json_encode(array("success" => "Task list added."));
     } else {
-        // no lists - create base list.
         echo json_encode(array("error"=>"Failed to create task list."));
     }
 
