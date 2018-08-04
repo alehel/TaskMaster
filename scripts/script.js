@@ -1,37 +1,51 @@
 // GLOBALS
 let selectedList = "";
 
-let btnBurger = document.getElementById('burger');
+// Functions needed for first load.
+loadList();
+
+/*
+    BURGER MENU
+*/
+const btnBurger = document.getElementById('burger');
 if(btnBurger !== null) {
     btnBurger.addEventListener('click', function() {
         document.getElementById("sidenav").style.width = "250px";
     }, false);
 }
 
-let btnCloseSidenav = document.getElementById('btnCloseSidenav');
+const btnCloseSidenav = document.getElementById('btnCloseSidenav');
 if(btnCloseSidenav !== null) {
     btnCloseSidenav.addEventListener('click', function() { 
         document.getElementById("sidenav").style.width = "0";
     }, false);
 }
 
+
+/*
+    MODAL
+*/
 function closeModal(modalName) {
-    let modal = document.getElementById(modalName);    
+    const modal = document.getElementById(modalName);    
     modal.style.display = "none";
 }
 
 window.onclick = function (event) {
-    let modal = document.getElementById('modal-login');    
+    const modal = document.getElementById('modal-login');    
     if (event.target === modal) {
         closeModal('modal-login');
     }
 }
 
+/*
+    Load the name of all the tasks lists for the current user and place it
+    in the DOM.
+*/
 function loadList() {
-    let xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        let obj = JSON.parse(this.responseText);
+        const obj = JSON.parse(this.responseText);
         let htmlList = "";
         if("error" in obj) {
             htmlList = '<div class="sidenav-error">Login to see your task lists.</div>';
@@ -50,8 +64,11 @@ function loadList() {
     xhttp.send();
 }
 
+/*
+    Attach event handlers to the name of each task list. 
+*/
 function addEventHandlersToLists() {
-    let items = document.getElementsByClassName('list');
+    const items = document.getElementsByClassName('list');
 
     for(let i = 0; i < items.length; i++) {
         items[i].addEventListener('click', function() {
@@ -62,12 +79,15 @@ function addEventHandlersToLists() {
     }
 }
 
+/*
+    Load all tasks in a given task list and render it to the DOM.
+*/
 function loadTasks(listID) {
-    let listname = listID.substring(5);
-    let xhttp = new XMLHttpRequest();
+    const listname = listID.substring(5);
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        let obj = JSON.parse(this.responseText);
+        const obj = JSON.parse(this.responseText);
         let html = '<div id="tasks">';
         let i = 0;
         for(task in obj) {
@@ -85,31 +105,41 @@ function loadTasks(listID) {
     xhttp.send();
 }
 
-loadList();
-
+/*
+    Show the window (modal) for creating new task lists.
+*/
 function showNewListModal() {
     document.getElementById('modal-newlist').style.display = "block";
 }
 
-let btnCloseNewList = document.getElementById('btnCloseNewList');
+/*
+    Cancel button for the create new task list window. 
+*/
+const btnCloseNewList = document.getElementById('btnCloseNewList');
 if(btnCloseNewList !== null) {
     btnCloseNewList.addEventListener('click', function() { 
         closeModal('modal-newlist');
     }, false);
 }
 
-let btnSubmitNewList = document.getElementById('btnSubmitNewList');
-
+/*
+    Submit button for the create new task list window. 
+*/
+const btnSubmitNewList = document.getElementById('btnSubmitNewList');
 if(btnSubmitNewList !== null) {
     btnSubmitNewList.addEventListener('click', function() {
         addNewList();
-        return false;
+        loadTasks(document.getElementById('txtListName').value);
+        closeModal('modal-newlist');
     }, false);    
 }
 
+/*
+    Uses an AJAX call to create a new task list.
+*/
 function addNewList() {
-    let xhttp = new XMLHttpRequest();
-    let listname = document.getElementById('txtListName').value; 
+    const xhttp = new XMLHttpRequest();
+    const listname = document.getElementById('txtListName').value; 
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {  
         loadList();
@@ -117,6 +147,4 @@ function addNewList() {
     };
     xhttp.open("GET", "API/endpoint/createNewList.php?listname="+listname, true);
     xhttp.send();
-    closeModal('modal-newlist');
-    return false;
 }
