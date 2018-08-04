@@ -57,7 +57,7 @@ body {
 .menu-container {
     color: #fff;
     background-color: #5995DA;
-    padding: 20px 0;
+    padding: 20px;
     display: flex;
     justify-content: space-around;
 }
@@ -232,6 +232,7 @@ body {
     font-weight: bold;
     border-radius: 4px;
     text-decoration: none;
+    margin-left: 5px;
 }
 
 .btn:hover {
@@ -245,6 +246,10 @@ body {
 
 .btn-danger {
     background-color: rgb(248, 94, 94);
+}
+
+.btn-dark {
+    background-color: #343a40;
 }
 
 /*
@@ -286,14 +291,6 @@ body {
     font-size: 1.4em;
 }
 
-#tasklist-controls a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 16px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
 #tasklist-controls a:visited {
     color: black;
 }
@@ -316,7 +313,7 @@ body {
 }
 
 .task {
-    padding: 32px 16px;
+    padding: 32px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 

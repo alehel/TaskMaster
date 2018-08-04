@@ -1,5 +1,6 @@
 // Functions needed for first load.
 loadList();
+let currentList = '';
 
 /*
     BURGER MENU
@@ -88,7 +89,7 @@ function addEventHandlersToLists() {
     Load all tasks in a given task list and render it to the DOM.
 */
 function loadTasks(listID) {
-    const listname = listID.substring(5);
+    currentList = listID.substring(5);
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -107,14 +108,34 @@ function loadTasks(listID) {
         todolistDOM.style.justifyContent = 'flex-start';
       }
     };
-    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+listname, true);
+    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+currentList, true);
     xhttp.send();
 }
+
+const btnDeleteList = document.getElementById('delete-list');
+if(btnDeleteList !== null) {
+    btnDeleteList.addEventListener('click', function() {
+        deleteCurrentList();
+    })
+}
+
+function deleteCurrentList() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        location.reload();
+      }
+    };
+    xhttp.open("GET", "API/endpoint/deleteList.php?listname="+currentList, true);
+    xhttp.send();
+}
+
 
 function addNewTaskControl() {
     return `
         <div id="new-task-control">
-            <input type="text" id="input-text-task" /><button id="btn-add-task" class="btn btn-ok">+</button>
+            <input type="text" id="input-text-task" />
+            <button id="btn-add-task" class="btn btn-ok">+</button>
         </div>`;
 }
 

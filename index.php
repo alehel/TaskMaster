@@ -60,8 +60,8 @@
         <div id="tasklist-settings">
             <div id="title"></div>
             <div id="tasklist-controls">
-                <a href="" id="edit-name">Edit Name</a>
-                <a href="" id="delete-list">Delete</a>
+                <button id="edit-name" class="btn btn-dark">Edit Name</a>
+                <button id="delete-list" class="btn btn-danger">Delete</a>
             </div>
         </div>
         <div id="todolist">
