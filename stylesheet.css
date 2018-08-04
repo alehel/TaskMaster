@@ -212,13 +212,16 @@ body {
     FORM CONTROLS
 */
 
-.input-text {
+.input-text, #input-text-task {
     border: 1px solid grey;
     border-radius: 4px;
-    width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
+}
+
+.input-text {
+    margin: 8px 0;
+    width: 100%;
 }
 
 .btn {
@@ -247,6 +250,30 @@ body {
 /*
     TO-DO LIST
 */
+#new-task-control {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#input-text-task {
+    flex: 1;
+}
+
+#btn-add-task {
+    margin-left: 10px;
+}
+
+#btn-add-task {
+    border: none;
+    padding: 5px 15px;
+    font-size: 1.3em;
+    font-weight: bolder;
+    border-radius: 100%;
+    text-decoration: none;
+}
+
+
 #tasklist-settings {
     display: flex;
     justify-content: space-between;
@@ -276,9 +303,7 @@ body {
     flex-direction: column;
     flex: 1;
     justify-content: center;
-}
 
-#todolist {
     background-image: url('assets/can_do_man.svg'), none;
     background-repeat: no-repeat;
     background-position: center center;

@@ -58,7 +58,7 @@
         </nav>
         
         <div id="tasklist-settings">
-            <div id="title">Dummy</div>
+            <div id="title"></div>
             <div id="tasklist-controls">
                 <a href="" id="edit-name">Edit Name</a>
                 <a href="" id="delete-list">Delete</a>

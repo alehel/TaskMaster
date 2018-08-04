@@ -35,6 +35,13 @@ window.onclick = function (event) {
 }
 
 /*
+    Make task list control panel visible
+*/
+function showControlPanel() {
+    
+}
+
+/*
     Load the name of all the tasks lists for the current user and place it
     in the DOM.
 */
@@ -86,7 +93,8 @@ function loadTasks(listID) {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         const obj = JSON.parse(this.responseText);
-        let html = '<div id="tasks">';
+        let html = addNewTaskControl();
+        html += '<div id="tasks">';
         let i = 0;
         for(task in obj) {
             html += '<div class="task" id="task-'+i+'">'+obj[task]["task"]+'</div>';
@@ -101,6 +109,13 @@ function loadTasks(listID) {
     };
     xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+listname, true);
     xhttp.send();
+}
+
+function addNewTaskControl() {
+    return `
+        <div id="new-task-control">
+            <input type="text" id="input-text-task" /><button id="btn-add-task" class="btn btn-ok">+</button>
+        </div>`;
 }
 
 /*
