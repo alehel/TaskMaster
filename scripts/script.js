@@ -1,14 +1,6 @@
 // GLOBALS
 let selectedList = "";
 
-
-let btnLogin = document.getElementById('btnLogin');
-if(btnLogin !== null) {
-    btnLogin.addEventListener('click', function() { 
-        document.getElementById('modal-login').style.display = "block";
-    }, false);
-}
-
 let btnBurger = document.getElementById('burger');
 if(btnBurger !== null) {
     btnBurger.addEventListener('click', function() {
@@ -20,13 +12,6 @@ let btnCloseSidenav = document.getElementById('btnCloseSidenav');
 if(btnCloseSidenav !== null) {
     btnCloseSidenav.addEventListener('click', function() { 
         document.getElementById("sidenav").style.width = "0";
-    }, false);
-}
-
-let btnCloseLogin = document.getElementById('btnCloseLogin');
-if(btnCloseLogin !== null) {
-    btnCloseLogin.addEventListener('click', function() { 
-        closeModal('modal-login');
     }, false);
 }
 

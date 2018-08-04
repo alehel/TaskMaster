@@ -47,6 +47,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Master</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
@@ -60,7 +61,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
                 <div></div>
             </div>
         </nav>
-        
+
         <form id="login" class="shadow" action="" method="post">
             <h1>Login</h1><br>
             Email:<br>
@@ -69,6 +70,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
             <input class="input-text" type="password" name="password"><br>
             <br>
             <div id="btn-login-container">
+                <input class="btn btn-ok" type="button" value="Register">
                 <input class="btn btn-ok" type="submit" value="Login"> 
             </div>
         </form>
