@@ -1,6 +1,3 @@
-// GLOBALS
-let selectedList = "";
-
 // Functions needed for first load.
 loadList();
 
@@ -69,10 +66,11 @@ function loadList() {
 */
 function addEventHandlersToLists() {
     const items = document.getElementsByClassName('list');
+    const title = document.getElementById('title');
 
     for(let i = 0; i < items.length; i++) {
         items[i].addEventListener('click', function() {
-            selectedList = this.id;
+            title.innerHTML = this.id.substring(5);
             loadTasks(this.id);
             document.getElementById("sidenav").style.width = "0";
         }, false);

@@ -56,6 +56,14 @@
                 </div>
             </div>
         </nav>
+        
+        <div id="tasklist-settings">
+            <div id="title">Dummy</div>
+            <div id="tasklist-controls">
+                <a href="" id="edit-name">Edit Name</a>
+                <a href="" id="delete-list">Delete</a>
+            </div>
+        </div>
         <div id="todolist">
             <div id="welcome-message">
                 <h1>Welcome to Task Master</h1>

@@ -209,7 +209,7 @@ body {
 }
 
 /*
-    FROM CONTROLS
+    FORM CONTROLS
 */
 
 .input-text {
@@ -247,6 +247,30 @@ body {
 /*
     TO-DO LIST
 */
+#tasklist-settings {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(214, 214, 231);
+    align-items: center;
+}
+
+#title {
+    font-size: 1.4em;
+}
+
+#tasklist-controls a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#tasklist-controls a:visited {
+    color: black;
+}
+
 #todolist {
     display: flex;
     flex-direction: column;
