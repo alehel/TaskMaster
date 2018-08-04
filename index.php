@@ -26,8 +26,8 @@
                 <input class="input-text" id="txtListName" type="text" name="listname"><br> 
 
                 <div class="modal-buttons">
-                    <input id="btnCloseNewList" class="btn btn-danger" type="button" value="Cancel">
                     <input id="btnSubmitNewList" class="btn btn-ok" type="submit" value="Submit"> 
+                    <input id="btnCloseNewList" class="btn btn-danger" type="button" value="Cancel">
                 </div>
             </form>
         </div>
