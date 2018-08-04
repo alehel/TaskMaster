@@ -53,13 +53,14 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
 
 <body>
     <div id="main">
-    <nav class="menu-container">
-        <div class="menu">
-            <div></div>
-            <div id="logo">Task Master</div>
-            <div></div>
-        </div>
+        <nav class="menu-container">
+            <div class="menu">
+                <div></div>
+                <div id="logo">Task Master</div>
+                <div></div>
+            </div>
         </nav>
+        
         <form id="login" class="shadow" action="" method="post">
             <h1>Login</h1><br>
             Email:<br>

@@ -193,6 +193,20 @@ body {
     text-align: right;
 }
 
+/*
+    LOGIN ERROR
+*/
+#login-error {
+    padding: 16px;
+    text-align: center;
+}
+
+#login-error img {
+    max-height: 300px;
+    padding: 16px 0px 32px;
+    margin: auto;
+    display: block;
+}
 
 /*
     FROM CONTROLS
@@ -214,6 +228,7 @@ body {
     font-size: 0.9em;
     font-weight: bold;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .btn:hover {
@@ -297,6 +312,11 @@ body {
         border-radius: 15px;
         padding: 25px;
         margin:auto;
+    }
+
+    #login-error {
+        border-radius: 15px;
+        margin: auto;
     }
 
     .shadow {

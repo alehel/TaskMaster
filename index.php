@@ -18,9 +18,19 @@
 </head>
 
 <body>
-    <?php
-    include 'includes/newlistmodal.html';
-    ?>
+    <div class="modal" id="modal-newlist">
+        <div class="modal-content">
+            <form action="" onsubmit="event.preventDefault()">
+                Name:<br>
+                <input class="input-text" id="txtListName" type="text" name="listname"><br> 
+
+                <div class="modal-buttons">
+                    <input id="btnCloseNewList" class="btn btn-danger" type="button" value="Cancel">
+                    <input id="btnSubmitNewList" class="btn btn-ok" type="submit" value="Submit"> 
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="sidenav" id="sidenav">
         <a href="#" id="btnCloseSidenav">&times;</a>
