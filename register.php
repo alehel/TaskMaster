@@ -8,17 +8,19 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
     $password = $conn->real_escape_string($_POST["password"]);
     
     // get the users hashed password from the db
-    $sql = "SELECT user FROM user WHERE email='$email';";
+    $sql = "SELECT * FROM user WHERE email='$email';";
     $result = $conn->query($sql);
     
     // check if user exists
     if($conn->affected_rows === 1) { // user exists
-        echo "Error: User exists";
-        die();
+        echo "
+        <script type=\"text/javascript\">
+            window.location.href = './logregfailed.php?error=Account already exists for that email.';
+        </script>
+        ";
     } else { // user does not exist
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO user VALUES ('$email', '$password')";
-        echo $sql;
+        $sql = "INSERT INTO user VALUES ($email, $password)";
         $result = $conn->query($sql);
         if($conn->affected_rows === 1)  {
             $_SESSION["user"] = $email;
@@ -28,9 +30,11 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
             </script>
             ";
         } else {
-            echo "error";
-            echo $conn->error;
-            die();
+            echo "
+            <script type=\"text/javascript\">
+                window.location.href = './logregfailed.php';
+            </script>
+            ";
         }
     }
     
@@ -68,7 +72,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
             <br>
             <div id="btn-login-container">
                 <input class="btn btn-ok" type="submit" value="Register">
-                <input class="btn btn-danger" type="button" value="Cancel">
+                <a href="login.php" class="btn btn-danger">Cancel</a>
             </div>
         </form>
     </div>

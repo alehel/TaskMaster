@@ -27,14 +27,14 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
         } else { // Wrong password
             echo "
             <script type=\"text/javascript\">
-                window.location.href = './loginfailed.html';
+                window.location.href = './logregfailed.php?error=Wrong username and/or password.';
             </script>
         ";
         }
     } else { // Wrong username
         echo "
         <script type=\"text/javascript\">
-            window.location.href = './loginfailed.html';
+            window.location.href = './logregfailed.php?error=Wrong username and/or password.';
         </script>
     ";
     }

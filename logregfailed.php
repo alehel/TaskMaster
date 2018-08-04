@@ -1,3 +1,11 @@
+<?php
+    $error_message = "Oops! Something went wrong!";
+
+    if(isset($_GET["error"])) {
+        $error_message = $_GET["error"];
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +26,7 @@
             </nav>
     
             <div id="login-error">
-                <h1>Wrong username and/or password!</h1>
+                <h1><?php echo $error_message ?></h1>
                 <img src="assets/error.svg" alt="Illustrative image of confused man" />
                 <div>
                     <a href="login.php" class="btn btn-ok">&#8592; Back to login</a>
