@@ -34,7 +34,7 @@
     </div>
 
     <div class="sidenav" id="sidenav">
-        <a href="#" id="btnCloseSidenav">&times;</a>
+        <button id="btnCloseSidenav">&times;</button>
         <span>Task Lists</span>
         <div id="tasklist" class="tasklist">
             <!-- Populated by AJAX call in scripts/sidenav.js -->

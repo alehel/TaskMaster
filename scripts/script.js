@@ -145,8 +145,10 @@ const btnSubmitNewList = document.getElementById('btnSubmitNewList');
 btnSubmitNewList.addEventListener('click', function() {
     const listname = document.getElementById('txtListName').value; 
     addNewList(listname);
+    setCurrentList(listname);
     loadTasks(listname);
     closeModal('modal-newlist');
+    closeSidenav();
 }, false);    
 
 /*
