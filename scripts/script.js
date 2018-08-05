@@ -138,6 +138,10 @@ function loadTasks(list) {
     xhttp.send();
 }
 
+function toggleTaskState(taskId) {
+    // AJAX
+}
+
 const btnDeleteList = document.getElementById('delete-list');
 btnDeleteList.addEventListener('click', function() {
     deleteCurrentList();
