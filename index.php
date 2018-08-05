@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div id="new-task-control">
-                <input type="text" id="input-text-task" autocomplete="off" />
+                <input type="text" class="input-text" id="input-text-task" autocomplete="off" />
                 <button id="btn-add-task" class="btn btn-ok">+</button>
             </div>
         </div>

@@ -215,21 +215,18 @@ body {
     FORM CONTROLS
 */
 
-.input-text, #input-text-task {
+.input-text {
     border: 1px solid grey;
     border-radius: 4px;
     box-sizing: border-box;
     width: 100%;
     padding: 12px 20px;
-}
-
-.input-text {
     margin: 8px 0;
 }
 
 .btn {
-    border: none;
     padding: 14px 28px;
+    border: none;
     color:white;
     font-size: 0.9em;
     font-weight: bold;
@@ -275,11 +272,12 @@ body {
 
 #new-task-control {
     display: flex;
+    align-items: center;
     width: 100%;
 }
 
 #btn-add-task {
-    padding: 8px 15px;
+    padding: 6px 12px;
     margin-left: 10px;
     border: none;
     font-size: 1.3em;
@@ -288,8 +286,13 @@ body {
     border-radius: 100%;
 }
 
+#input-text-task {
+    padding: 10px 5px;
+}
+
 .btn-task-toggle {
     background-color: rgb(89, 218, 89);
+    padding: 5px 10px;
 }
 
 
@@ -330,7 +333,7 @@ body {
 }
 
 .task {
-    padding: 32px 20px;
+    padding: 15px 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     display:flex;
     justify-content: space-between;
