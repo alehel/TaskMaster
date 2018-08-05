@@ -23,7 +23,7 @@
         <div class="modal-content">
             <form action="" onsubmit="event.preventDefault()">
                 Name:<br>
-                <input class="input-text" id="txtListName" type="text" name="listname"><br> 
+                <input class="input-text" id="txtListName" type="text" name="listname" autocomplete="off"><br> 
 
                 <div class="modal-buttons">
                     <input id="btnSubmitNewList" class="btn btn-ok" type="submit" value="Submit"> 
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div id="new-task-control">
-                <input type="text" id="input-text-task" />
+                <input type="text" id="input-text-task" autocomplete="off" />
                 <button id="btn-add-task" class="btn btn-ok">+</button>
             </div>
         </div>

@@ -2,10 +2,31 @@
 loadListNames();
 let currentList = '';
 
+document.onkeydown = function(evt) {
+    if(evt.keyCode == 27) {
+        if(newListModalVisible()) {
+            closeModal('modal-newlist');
+        }
+    }
+}
+
 function setCurrentList(newCurrentList) {
     currentList = newCurrentList;
     title.innerHTML = currentList;
 }
+
+function newListModalVisible() {
+    const modal = document.getElementById('modal-newlist');
+    return modal.style.display === 'none' ? false : true;
+}
+
+document.getElementById('input-text-task')
+    .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if(event.keyCode === 13) {
+            document.getElementById('btn-add-task').click();
+        }
+});
 
 /*
     BURGER MENU
@@ -38,6 +59,8 @@ window.onclick = function (event) {
         closeModal('modal-login');
     }
 }
+
+
 
 function showNewListModal() {
     document.getElementById('modal-newlist').style.display = "block";
@@ -81,6 +104,7 @@ function addEventHandlersToListNames() {
         items[i].addEventListener('click', function() {
             setCurrentList(this.id.substring(5));
             loadTasks(currentList);
+            document.getElementById('input-text-task').focus();
             closeSidenav();
         }, false);
     }
