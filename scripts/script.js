@@ -114,6 +114,7 @@ function addEventHandlersToListNames() {
     Load all tasks in a given task list and render it to the DOM.
 */
 function loadTasks(list) {
+    console.log("Here:" + list);
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -122,7 +123,9 @@ function loadTasks(list) {
         html += '<div id="tasks">';
         let i = 0;
         for(task in obj) {
-            html += '<div class="task" id="task-'+i+'">'+obj[task]["task"]+'</div>';
+            html += '<div class="task" id="task-'+i+'"><div>'+obj[task]["task"]+`</div>
+                <button class="btn btn-task-toggle" id="toggle-`+obj[task]["taskid"]+`">&#x2713;</button>
+            </div>`;
             i++;
         }
         html += '</div>';
@@ -132,14 +135,33 @@ function loadTasks(list) {
         todolistDOM.style.justifyContent = 'flex-start';
         const tasklistControls = document.getElementById('tasklist-settings');
         tasklistControls.style.display = 'flex';
+
+        addEventHandlersToTasks();
       }
     };
     xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+list, true);
     xhttp.send();
 }
 
+function addEventHandlersToTasks() {
+    const items = document.getElementsByClassName('btn-task-toggle');
+
+    for(let i = 0; i < items.length; i++) {
+        items[i].addEventListener('click', function() {
+            toggleTaskState(this.id.substring(7));
+        }, false);
+    }
+}
+
 function toggleTaskState(taskId) {
-    // AJAX
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        loadTasks(currentList);
+      }
+    };
+    xhttp.open("GET", "API/endpoint/toggleTaskState.php?task_id="+taskId, true);
+    xhttp.send();
 }
 
 const btnDeleteList = document.getElementById('delete-list');

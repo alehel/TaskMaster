@@ -288,6 +288,10 @@ body {
     border-radius: 100%;
 }
 
+.btn-task-toggle {
+    background-color: rgb(89, 218, 89);
+}
+
 
 #tasklist-settings {
     flex-direction: column;
@@ -328,6 +332,9 @@ body {
 .task {
     padding: 32px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*

@@ -9,7 +9,7 @@ if(isset($_SESSION["user"]) && isset($_GET["listname"])) {
     $email = $conn->real_escape_string($email);
     $listname = $conn->real_escape_string($_GET["listname"]);
 
-    $sql = "SELECT * FROM task WHERE email='$email' AND listname='$listname' ORDER BY taskid DESC;";
+    $sql = "SELECT * FROM task WHERE email='$email' AND listname='$listname' AND complete='0' ORDER BY taskid DESC;";
     $result = $conn->query($sql);
 
     if($result->num_rows > 0) {
