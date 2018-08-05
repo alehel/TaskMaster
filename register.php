@@ -20,7 +20,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
         ";
     } else { // user does not exist
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO user VALUES ($email, $password)";
+        $sql = "INSERT INTO user VALUES ('$email', '$password')";
         $result = $conn->query($sql);
         if($conn->affected_rows === 1)  {
             $_SESSION["user"] = $email;
@@ -32,7 +32,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
         } else {
             echo "
             <script type=\"text/javascript\">
-                window.location.href = './logregfailed.php';
+                window.location.href = './logregfailed.php?error='$conn->error;
             </script>
             ";
         }
