@@ -58,12 +58,19 @@
         </nav>
         
         <div id="tasklist-settings">
-            <div id="title"></div>
-            <div id="tasklist-controls">
-                <button id="edit-name" class="btn btn-dark">Edit Name</a>
-                <button id="delete-list" class="btn btn-danger">Delete</a>
+            <div class="flex-row">
+                <div id="title"></div>
+                <div id="tasklist-controls">
+                    <button id="edit-name" class="btn btn-dark">Edit Name</a>
+                    <button id="delete-list" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            <div id="new-task-control">
+                <input type="text" id="input-text-task" />
+                <button id="btn-add-task" class="btn btn-ok">+</button>
             </div>
         </div>
+
         <div id="todolist">
             <div id="welcome-message">
                 <h1>Welcome to Task Master</h1>

@@ -94,7 +94,7 @@ function loadTasks(listID) {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         const obj = JSON.parse(this.responseText);
-        let html = addNewTaskControl();
+        let html = "";
         html += '<div id="tasks">';
         let i = 0;
         for(task in obj) {
@@ -102,10 +102,12 @@ function loadTasks(listID) {
             i++;
         }
         html += '</div>';
-        let todolistDOM = document.getElementById('todolist');
+        const todolistDOM = document.getElementById('todolist');
         todolistDOM.innerHTML = html;
         todolistDOM.style.background = 'none';
         todolistDOM.style.justifyContent = 'flex-start';
+        const tasklistControls = document.getElementById('tasklist-settings');
+        tasklistControls.style.display = 'flex';
       }
     };
     xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+currentList, true);
@@ -128,15 +130,6 @@ function deleteCurrentList() {
     };
     xhttp.open("GET", "API/endpoint/deleteList.php?listname="+currentList, true);
     xhttp.send();
-}
-
-
-function addNewTaskControl() {
-    return `
-        <div id="new-task-control">
-            <input type="text" id="input-text-task" />
-            <button id="btn-add-task" class="btn btn-ok">+</button>
-        </div>`;
 }
 
 /*
@@ -181,4 +174,24 @@ function addNewList() {
     };
     xhttp.open("GET", "API/endpoint/createNewList.php?listname="+listname, true);
     xhttp.send();
+}
+
+const btnAddTask = document.getElementById('btn-add-task');
+btnAddTask.addEventListener('click', function() {
+    addNewTask(currentList);
+    document.getElementById('input-text-task').value = "";
+});
+
+
+function addNewTask() {
+    const task = document.getElementById('input-text-task').value;
+    const url = "API/endpoint/addTask.php?listname="+currentList+"&task="+task;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {  
+        loadTasks("task-" + currentList);
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();   
 }

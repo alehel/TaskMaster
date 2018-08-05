@@ -7,7 +7,7 @@ if(isset($_SESSION["user"]) && isset($_GET["task"]) && isset($_GET["listname"]))
     $conn = (new Database())->get_connection();
     $email = $conn->real_escape_string($_SESSION["user"]);
     $listname = $conn->real_escape_string($_GET["listname"]);
-    $taskname = $conn->real_escape_string($_GET["taskname"]);
+    $taskname = $conn->real_escape_string($_GET["task"]);
 
     $sql = "INSERT INTO task (task, listname, email) VALUES ('$taskname', '$listname', '$email');";
     $result = $conn->query($sql);
@@ -21,7 +21,7 @@ if(isset($_SESSION["user"]) && isset($_GET["task"]) && isset($_GET["listname"]))
     $conn->close();
 } else {
     echo $_SESSION["user"];
-    echo $_GET["taskname"];
+    echo $_GET["task"];
     echo $_GET["listname"];
     echo json_encode(array("error"=>"Authentication failed."));
 }

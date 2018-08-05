@@ -32,7 +32,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
         } else {
             echo "
             <script type=\"text/javascript\">
-                window.location.href = './logregfailed.php?error='$conn->error;
+                window.location.href = './logregfailed.php;
             </script>
             ";
         }
