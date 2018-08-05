@@ -1,24 +1,28 @@
 // Functions needed for first load.
-loadList();
+loadListNames();
 let currentList = '';
+
+function setCurrentList(newCurrentList) {
+    currentList = newCurrentList;
+    title.innerHTML = currentList;
+}
 
 /*
     BURGER MENU
 */
 const btnBurger = document.getElementById('burger');
-if(btnBurger !== null) {
-    btnBurger.addEventListener('click', function() {
-        document.getElementById("sidenav").style.width = "250px";
-    }, false);
-}
+btnBurger.addEventListener('click', function() {
+    document.getElementById("sidenav").style.width = "250px";
+}, false);
 
 const btnCloseSidenav = document.getElementById('btnCloseSidenav');
-if(btnCloseSidenav !== null) {
-    btnCloseSidenav.addEventListener('click', function() { 
-        document.getElementById("sidenav").style.width = "0";
-    }, false);
-}
+btnCloseSidenav.addEventListener('click', function() { 
+    closeSidenav();
+}, false);
 
+function closeSidenav() {
+    document.getElementById("sidenav").style.width = "0";
+}
 
 /*
     MODAL
@@ -35,18 +39,15 @@ window.onclick = function (event) {
     }
 }
 
-/*
-    Make task list control panel visible
-*/
-function showControlPanel() {
-    
+function showNewListModal() {
+    document.getElementById('modal-newlist').style.display = "block";
 }
 
 /*
     Load the name of all the tasks lists for the current user and place it
     in the DOM.
 */
-function loadList() {
+function loadListNames() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -62,7 +63,7 @@ function loadList() {
         }
 
         document.getElementById("tasklist").innerHTML = htmlList;
-        addEventHandlersToLists();
+        addEventHandlersToListNames();
       }
     };
     xhttp.open("GET", "API/endpoint/getCollection.php", true);
@@ -72,15 +73,15 @@ function loadList() {
 /*
     Attach event handlers to the name of each task list. 
 */
-function addEventHandlersToLists() {
+function addEventHandlersToListNames() {
     const items = document.getElementsByClassName('list');
     const title = document.getElementById('title');
 
     for(let i = 0; i < items.length; i++) {
         items[i].addEventListener('click', function() {
-            title.innerHTML = this.id.substring(5);
-            loadTasks(this.id);
-            document.getElementById("sidenav").style.width = "0";
+            setCurrentList(this.id.substring(5));
+            loadTasks(currentList);
+            closeSidenav();
         }, false);
     }
 }
@@ -88,8 +89,7 @@ function addEventHandlersToLists() {
 /*
     Load all tasks in a given task list and render it to the DOM.
 */
-function loadTasks(listID) {
-    currentList = listID.substring(5);
+function loadTasks(list) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -110,16 +110,14 @@ function loadTasks(listID) {
         tasklistControls.style.display = 'flex';
       }
     };
-    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+currentList, true);
+    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+list, true);
     xhttp.send();
 }
 
 const btnDeleteList = document.getElementById('delete-list');
-if(btnDeleteList !== null) {
-    btnDeleteList.addEventListener('click', function() {
-        deleteCurrentList();
-    })
-}
+btnDeleteList.addEventListener('click', function() {
+    deleteCurrentList();
+})
 
 function deleteCurrentList() {
     const xhttp = new XMLHttpRequest();
@@ -133,43 +131,32 @@ function deleteCurrentList() {
 }
 
 /*
-    Show the window (modal) for creating new task lists.
-*/
-function showNewListModal() {
-    document.getElementById('modal-newlist').style.display = "block";
-}
-
-/*
     Cancel button for the create new task list window. 
 */
 const btnCloseNewList = document.getElementById('btnCloseNewList');
-if(btnCloseNewList !== null) {
-    btnCloseNewList.addEventListener('click', function() { 
-        closeModal('modal-newlist');
-    }, false);
-}
+btnCloseNewList.addEventListener('click', function() { 
+    closeModal('modal-newlist');
+}, false);
 
 /*
     Submit button for the create new task list window. 
 */
 const btnSubmitNewList = document.getElementById('btnSubmitNewList');
-if(btnSubmitNewList !== null) {
-    btnSubmitNewList.addEventListener('click', function() {
-        addNewList();
-        loadTasks(document.getElementById('txtListName').value);
-        closeModal('modal-newlist');
-    }, false);    
-}
+btnSubmitNewList.addEventListener('click', function() {
+    const listname = document.getElementById('txtListName').value; 
+    addNewList(listname);
+    loadTasks(listname);
+    closeModal('modal-newlist');
+}, false);    
 
 /*
     Uses an AJAX call to create a new task list.
 */
-function addNewList() {
+function addNewList(listname) {
     const xhttp = new XMLHttpRequest();
-    const listname = document.getElementById('txtListName').value; 
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {  
-        loadList();
+        loadListNames(); // refresh the sidenav to show the new list.
       }
     };
     xhttp.open("GET", "API/endpoint/createNewList.php?listname="+listname, true);
@@ -178,18 +165,18 @@ function addNewList() {
 
 const btnAddTask = document.getElementById('btn-add-task');
 btnAddTask.addEventListener('click', function() {
-    addNewTask(currentList);
+    const task = document.getElementById('input-text-task').value;
+    addNewTask(currentList, task);
     document.getElementById('input-text-task').value = "";
 });
 
 
-function addNewTask() {
-    const task = document.getElementById('input-text-task').value;
+function addNewTask(currentList, task) {
     const url = "API/endpoint/addTask.php?listname="+currentList+"&task="+task;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {  
-        loadTasks("task-" + currentList);
+        loadTasks(currentList);
       }
     };
     xhttp.open("GET", url, true);
