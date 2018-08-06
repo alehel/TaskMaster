@@ -32,14 +32,10 @@ function validateFormRegister() {
 
 function validateEmail(email) {
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    console.log(email);
-    console.log(regexEmail.test(email));
     return regexEmail.test(email);
 }
 
 function validatePassword(password) {
     const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/;
-    console.log(password);
-    console.log(regexPassword.test(password));
     return regexPassword.test(password);
 }
