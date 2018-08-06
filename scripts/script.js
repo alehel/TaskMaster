@@ -54,9 +54,9 @@ function closeModal(modalName) {
 }
 
 window.onclick = function (event) {
-    const modal = document.getElementById('modal-login');    
+    const modal = document.getElementById('modal-newlist');    
     if (event.target === modal) {
-        closeModal('modal-login');
+        closeModal('modal-newlist');
     }
 }
 
