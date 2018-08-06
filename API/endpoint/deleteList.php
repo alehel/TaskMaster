@@ -13,7 +13,7 @@ if(isset($_SESSION["user"]) && isset($_GET["listname"])) {
     $result = $conn->query($sql);
 
     if($conn->affected_rows === 1) {
-        $sql = "DELETE FROM task WHERE listname='$listname';"
+        $sql = "DELETE FROM task WHERE listname='$listname';";
         $conn->query($sql);
         echo json_encode(array("success" => "List deleted"));
     } else {
