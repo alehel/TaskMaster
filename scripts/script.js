@@ -89,7 +89,7 @@ function loadListNames() {
         addEventHandlersToListNames();
       }
     };
-    xhttp.open("GET", "API/endpoint/getCollection.php", true);
+    xhttp.open("GET", "API/endpoint/getLists.php", true);
     xhttp.send();
 }
 
@@ -114,7 +114,6 @@ function addEventHandlersToListNames() {
     Load all tasks in a given task list and render it to the DOM.
 */
 function loadTasks(list) {
-    console.log("Here:" + list);
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -139,7 +138,7 @@ function loadTasks(list) {
         addEventHandlersToTasks();
       }
     };
-    xhttp.open("GET", "API/endpoint/getTasksFromList.php?listname="+list, true);
+    xhttp.open("GET", "API/endpoint/getTasks.php?listname="+list, true);
     xhttp.send();
 }
 
@@ -211,7 +210,7 @@ function addNewList(listname) {
         loadListNames(); // refresh the sidenav to show the new list.
       }
     };
-    xhttp.open("GET", "API/endpoint/createNewList.php?listname="+listname, true);
+    xhttp.open("GET", "API/endpoint/newList.php?listname="+listname, true);
     xhttp.send();
 }
 
@@ -224,7 +223,7 @@ btnAddTask.addEventListener('click', function() {
 
 
 function addNewTask(currentList, task) {
-    const url = "API/endpoint/addTask.php?listname="+currentList+"&task="+task;
+    const url = "API/endpoint/newTask.php?listname="+currentList+"&task="+task;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {  
