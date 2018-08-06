@@ -10,10 +10,12 @@ if(isset($_SESSION["user"]) && isset($_GET["old_listname"]) && isset($_GET["new_
     $new_listname = $conn->real_escape_string($_GET["new_listname"]);
 
 
-    $sql = "UPDATE list SET listname='$new_listname' WHERE listname='$old_listname'";
+    $sql = "UPDATE list SET listname='$new_listname' WHERE listname='$old_listname';";
     $result = $conn->query($sql);
 
     if($conn->affected_rows === 1) {
+        $sql = "UPDATE task SET listname='$new_listname' WHERE listname='$old_listname';";
+        $conn->query($sql);
         echo json_encode(array("success" => "List name changed"));
     } else {
         echo json_encode(array("error"=>"Failed to change list name..."));
