@@ -33,7 +33,7 @@ CREATE TABLE `list`
 
 PRIMARY KEY (`listname`, `email`),
 KEY `fkIdx_13` (`email`),
-CONSTRAINT `FK_13` FOREIGN KEY `fkIdx_13` (`email`) REFERENCES `user` (`email`)
+CONSTRAINT `FK_13` FOREIGN KEY `fkIdx_13` (`email`) REFERENCES `user` (`email`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
