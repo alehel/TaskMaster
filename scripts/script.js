@@ -36,7 +36,7 @@ btnBurger.addEventListener('click', function() {
     document.getElementById("sidenav").style.width = "250px";
 }, false);
 
-const btnCloseSidenav = document.getElementById('btn-cancel-newlist');
+const btnCloseSidenav = document.getElementById('btnCloseSidenav');
 btnCloseSidenav.addEventListener('click', function() { 
     closeSidenav();
 }, false);
