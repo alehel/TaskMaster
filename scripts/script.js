@@ -36,7 +36,7 @@ btnBurger.addEventListener('click', function() {
     document.getElementById("sidenav").style.width = "250px";
 }, false);
 
-const btnCloseSidenav = document.getElementById('btnCloseSidenav');
+const btnCloseSidenav = document.getElementById('btn-cancel-newlist');
 btnCloseSidenav.addEventListener('click', function() { 
     closeSidenav();
 }, false);
@@ -60,10 +60,10 @@ window.onclick = function (event) {
     }
 }
 
-
-
 function showNewListModal() {
+    closeSidenav();
     document.getElementById('modal-newlist').style.display = "block";
+    document.getElementById('input-text-listname').focus();
 }
 
 /*
@@ -163,9 +163,12 @@ function toggleTaskState(taskId) {
     xhttp.send();
 }
 
-const btnDeleteList = document.getElementById('delete-list');
+const btnDeleteList = document.getElementById('btn-delete-list');
 btnDeleteList.addEventListener('click', function() {
-    deleteCurrentList();
+    const result = confirm("Are you sure you want to delete this list? This cannot be undone!");
+    if(result) {
+        deleteCurrentList();
+    }
 })
 
 function deleteCurrentList() {
@@ -182,7 +185,7 @@ function deleteCurrentList() {
 /*
     Cancel button for the create new task list window. 
 */
-const btnCloseNewList = document.getElementById('btnCloseNewList');
+const btnCloseNewList = document.getElementById('btn-cancel-newlist');
 btnCloseNewList.addEventListener('click', function() { 
     closeModal('modal-newlist');
 }, false);
@@ -190,15 +193,64 @@ btnCloseNewList.addEventListener('click', function() {
 /*
     Submit button for the create new task list window. 
 */
-const btnSubmitNewList = document.getElementById('btnSubmitNewList');
+const btnSubmitNewList = document.getElementById('btn-add-newlist');
 btnSubmitNewList.addEventListener('click', function() {
-    const listname = document.getElementById('txtListName').value; 
+    const listname = document.getElementById('input-text-listname').value; 
     addNewList(listname);
     setCurrentList(listname);
     loadTasks(listname);
     closeModal('modal-newlist');
-    closeSidenav();
-}, false);    
+}, false);
+
+/*
+    Logic for editing list names.
+*/
+const btnEditListName = document.getElementById('btn-edit-name');
+btnEditListName.addEventListener('click', function() {
+    const titleLabel = document.getElementById('title');
+    const btnDelete = document.getElementById('btn-delete-list');
+
+    if(this.innerHTML === 'OK') {
+        submitNewListName(this);
+    } else {
+        let input = '<input class="input-text" id="input-text-edit-listname" value="'+ currentList +'" type="text" name="edit-listname" autocomplete="off">';
+        titleLabel.innerHTML = input;
+        input = document.getElementById('input-text-edit-listname');
+        input.focus();
+        input.selectionStart = input.selectionEnd = input.value.length; // places cursor at end of text.
+        this.style.backgroundColor = 'rgb(89, 218, 89)';
+        this.innerHTML = 'OK';
+        input.addEventListener('keyup', function(event) {
+            event.preventDefault();
+            if(event.keyCode === 13) {
+                btnEditListName.click();
+            }
+        });
+        btnDelete.style.display = 'none';
+    }
+});
+
+function submitNewListName(button) {
+    const titleLabel = document.getElementById('title');
+    const btnDelete = document.getElementById('btn-delete-list');
+    const newName = document.getElementById('input-text-edit-listname').value;
+    titleLabel.innerHTML = currentList;
+    button.style.backgroundColor = '#343a40';
+    button.innerHTML = 'Edit Name';
+    btnDelete.style.display = 'inline-block';
+    
+    const url = "API/endpoint/editListName.php?old_listname="+currentList+"&new_listname="+newName;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) { 
+        setCurrentList(newName);
+        loadListNames(); 
+        loadTasks(newName);
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send(); 
+}
 
 /*
     Uses an AJAX call to create a new task list.

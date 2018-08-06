@@ -23,11 +23,11 @@
         <div class="modal-content">
             <form action="" onsubmit="event.preventDefault()">
                 Name:<br>
-                <input class="input-text" id="txtListName" type="text" name="listname" autocomplete="off"><br> 
+                <input class="input-text" id="input-text-listname" type="text" name="listname" autocomplete="off"><br> 
 
                 <div class="modal-buttons">
-                    <input id="btnSubmitNewList" class="btn btn-ok" type="submit" value="Submit"> 
-                    <input id="btnCloseNewList" class="btn btn-danger" type="button" value="Cancel">
+                    <input id="btn-add-newlist" class="btn btn-ok" type="submit" value="Submit"> 
+                    <input id="btn-cancel-newlist" class="btn btn-danger" type="button" value="Cancel">
                 </div>
             </form>
         </div>
@@ -61,8 +61,8 @@
             <div class="flex-row">
                 <div id="title"></div>
                 <div id="tasklist-controls">
-                    <button id="edit-name" class="btn btn-dark">Edit Name</a>
-                    <button id="delete-list" class="btn btn-danger">Delete</a>
+                    <button id="btn-edit-name" class="btn btn-dark">Edit Name</a>
+                    <button id="btn-delete-list" class="btn btn-danger">Delete</a>
                 </div>
             </div>
             <div id="new-task-control">

@@ -12,6 +12,7 @@ function validateFormLogin() {
         return false;
     } else if (!passwordOk) {
         alert('Password must be at least 6 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.');
+        return false;
     } else {
         return true;
     }

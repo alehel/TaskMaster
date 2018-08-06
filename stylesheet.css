@@ -266,7 +266,7 @@ body {
     padding: 6px;
 }
 
-#edit-name, #delete-list {
+#btn-edit-name, #btn-delete-list {
     padding: 5px 10px;
 }
 
@@ -284,6 +284,11 @@ body {
     font-weight: bolder;
     text-decoration: none;
     border-radius: 100%;
+}
+
+#input-text-edit-listname {
+    padding: 4px 10px;
+    margin: 0px;
 }
 
 #input-text-task {
