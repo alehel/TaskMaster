@@ -62,12 +62,12 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
             </div>
         </nav>
 
-        <form id="login" class="shadow" action="" method="post">
+        <form id="login" class="shadow" action="" method="post" onsubmit="return validateFormLogin();">
             <h1>Login</h1><br>
             Email:<br>
-            <input class="input-text" type="text" name="email"><br> 
+            <input class="input-text" id="input-text-email" type="email" name="email" required><br> 
             Password:<br>
-            <input class="input-text" type="password" name="password"><br>
+            <input class="input-text" id="input-text-password" type="password" name="password" required><br>
             <br>
             <div id="btn-login-container">
                 <a href="register.php" class="btn btn-ok">New User</a>
@@ -75,5 +75,6 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
             </div>
         </form>
     </div>
+    <script src="scripts/validation.js"></script>
 </body>
 </html>
